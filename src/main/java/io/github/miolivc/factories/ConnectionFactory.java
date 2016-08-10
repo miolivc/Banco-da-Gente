@@ -10,7 +10,7 @@ public class ConnectionFactory {
     private static final String password = "123";
     
     public static Connection getConnection() throws SQLException, ClassNotFoundException{
-        Class.forName("com.org.postgresql");
+        Class.forName("org.postgresql.Driver");
         return DriverManager.getConnection(url, user, password);
     }
 

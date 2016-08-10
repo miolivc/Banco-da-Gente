@@ -5,17 +5,10 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <form method="post" action="CadastroCliente" enctype="multipart/form-data" name="foto-cliente">
-            <input type="file" name="foto">
-            <input type="text" name="cpf" placeholder="Digite o CPF" required>
-            <input type="text" name="cnpj" placeholder="Digite o CNPJ">
-            <input type="date" name="dataNasc" required>
-            <input type="text" name="rg" placeholder="Digite o RG" required>
-            <input type="text" name="nome" placeholder="Digite o nome do cliente" required>
-            <input type="text" name="email" placeholder="Digite o e-mail" required>
-            <input type="password" name="senha" placeholder="Digite a sua senha" required>
-            <input type="password" name="confirm-senha" placeholder="Digite novamente a senha" required>
-            <input type="text" name="telefone" placeholder="Digite o telefone" required>
+        <form method="post" action="CadastroAgencia" enctype="multipart/form-data">
+            
+            <input type="text" name="nomeAgencia" placeholder="Nome da Agencia">
+            <input type="text" name="telefone" placeholder="Digite o Telefone" required>
             <input type="text" name="rua" placeholder="Nome da Rua" required>
             <input type="text" name="bairro" placeholder="Nome do Bairro" required>
             <input type="text" name="cidade" placeholder="Digite a Cidade" required>
@@ -28,7 +21,7 @@
                 <option value="ap">Amapá</option>
                 <option value="ba">Bahia</option>
                 <option value="df">Distrito Federal</option>
-                <option value="es">Espírito Santo	</option>
+                <option value="es">Espírito Santo</option>
                 <option value="go">Goiás</option>
                 <option value="mt">Mato Grosso</option>
                 <option value="ms">Mato Grosso do Sul</option>
@@ -51,7 +44,5 @@
             <br>
             <button type="submit">Enviar</button>
         </form>
-        
-        <a href="CadastroCliente">algumacoisa</a>
     </body>
 </html>

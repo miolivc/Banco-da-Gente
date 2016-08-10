@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ClientManager {
+public class ClienteManager {
     FactoryDaoInterface factory = null;
     ClienteDao clienteDao = null;
     
-    public ClientManager() {
+    public ClienteManager() {
         factory = DaoFactory.createFactory(DaoFactory.DAO_BD);
         try {
             clienteDao = factory.createClienteDao();

@@ -5,8 +5,16 @@
         <servlet-class>io.github.miolivc.servlets.Login</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CadastroCliente</servlet-name>
+        <servlet-class>io.github.miolivc.servlets.CadastroCliente</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CalculoFinanciamento</servlet-name>
         <servlet-class>io.github.miolivc.servlets.CalculoFinanciamento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastroAgencia</servlet-name>
+        <servlet-class>io.github.miolivc.servlets.CadastroAgencia</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>CalculoFinanciamento</servlet-name>
         <url-pattern>/CalculoFinanciamento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroCliente</servlet-name>
+        <url-pattern>/CadastroCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastroAgencia</servlet-name>
+        <url-pattern>/CadastroAgencia</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

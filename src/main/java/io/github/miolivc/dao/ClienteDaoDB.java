@@ -19,9 +19,7 @@ public class ClienteDaoDB implements ClienteDao{
     
     @Override
     public boolean add(Cliente cliente) {
-        String sql = "INSERT INTO CLIENTE (CPF,CNPJ,NOME,RG,DATANASC,EMAIL,SENHA,FOTO) VALUES (?,?,?,?,?,?,?,?);"
-                    + "INSERT INTO ENDERECO_CLIENTE (CPF,RUA,BAIRRO,CIDADE,CEP,NUMERO,UF) VALUES (?,?,?,?,?,?,?);"
-                    + "INSERT INTO TELEFONE_CLIENTE (CPF,TELEFONE) VALUES (?,?)";
+        String sql = "INSERT INTO CLIENTE (CPF,CNPJ,NOME,RG,DATANASC,EMAIL,SENHA,FOTO) VALUES (?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1,cliente.getCpf());
@@ -32,7 +30,11 @@ public class ClienteDaoDB implements ClienteDao{
             stmt.setString(6, cliente.getEmail());
             stmt.setString(8, cliente.getSenha());
             stmt.setString(9, cliente.getFoto());
+            stmt.executeUpdate();
+            stmt.close();
             
+            sql = "INSERT INTO ENDERECO_CLIENTE (CPF,RUA,BAIRRO,CIDADE,CEP,NUMERO,UF) VALUES (?,?,?,?,?,?,?);";
+            stmt = conn.prepareStatement(sql);
             stmt.setString(10, cliente.getCpf());
             stmt.setString(11, cliente.getEndereco().getRua());
             stmt.setString(12, cliente.getEndereco().getBairro());
@@ -40,7 +42,11 @@ public class ClienteDaoDB implements ClienteDao{
             stmt.setString(14, cliente.getEndereco().getCep());
             stmt.setString(15, cliente.getEndereco().getNumero());
             stmt.setString(16, cliente.getEndereco().getUf());
+            stmt.executeUpdate();
+            stmt.close();
             
+            sql = "INSERT INTO TELEFONE_CLIENTE (CPF,TELEFONE) VALUES (?,?)";
+            stmt = conn.prepareStatement(sql);
             stmt.setString(17, cliente.getCpf());
             stmt.setString(18, cliente.getTelefone());
             
@@ -49,11 +55,10 @@ public class ClienteDaoDB implements ClienteDao{
             stmt.close();
             conn.close();
             
-            return true;
         } catch (SQLException ex) {
             ex.printStackTrace(); 
         }    
-        return false;
+        return true;
     }
 
     @Override
@@ -66,11 +71,11 @@ public class ClienteDaoDB implements ClienteDao{
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
                 ex.printStackTrace(); 
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -109,7 +114,7 @@ public class ClienteDaoDB implements ClienteDao{
     @Override
     public Cliente find(String cpf) {
         Cliente cliente = null;
-        String sql = "SELECT * FROM CLIENTE  NATURAL JOIN TELEFONE_CLIENTE"
+        String sql = "SELECT * FROM CLIENTE NATURAL JOIN TELEFONE_CLIENTE"
                 + " NATURAL JOIN ENDERECO_CLIENTE WHERE CPF ILIKE" + cpf;
         try {
             Statement stmt = conn.createStatement();
@@ -173,11 +178,11 @@ public class ClienteDaoDB implements ClienteDao{
             
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return true;
     }
 
 }

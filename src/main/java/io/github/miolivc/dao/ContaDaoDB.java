@@ -38,11 +38,11 @@ public class ContaDaoDB implements ContaDao{
             }
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class ContaDaoDB implements ContaDao{
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -159,10 +159,10 @@ public class ContaDaoDB implements ContaDao{
             }
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return true;
     }
 }

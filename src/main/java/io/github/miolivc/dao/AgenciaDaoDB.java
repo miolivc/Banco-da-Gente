@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import io.github.miolivc.entities.Agencia;
-import io.github.miolivc.entities.Conta;
 import io.github.miolivc.factories.ConnectionFactory;
 
 public class AgenciaDaoDB implements AgenciaDao{
@@ -41,11 +40,10 @@ public class AgenciaDaoDB implements AgenciaDao{
             stmt.close();
             conn.close();
             
-            return true;
         } catch (SQLException ex) {
             ex.printStackTrace(); 
         }    
-        return false;
+        return true;
     }
 
     @Override
@@ -58,11 +56,11 @@ public class AgenciaDaoDB implements AgenciaDao{
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
-                ex.printStackTrace(); 
+            ex.printStackTrace(); 
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -126,7 +124,7 @@ public class AgenciaDaoDB implements AgenciaDao{
     String sql = "SELECT * FROM AGENCIA JOIN TELEFONE_AGENCIA NATURAL JOIN"
             + " ENDERECO_AGENCIA WHERE CODIGO = CODAG AND NOME ILIKE " + nome + ";";
         try {
-        	Statement stmt = conn.createStatement();
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             if(rs.next()){            	
             	agencia.setCodigo(rs.getInt("codigo"));
@@ -174,11 +172,11 @@ public class AgenciaDaoDB implements AgenciaDao{
             
             stmt.close();
             conn.close();
-            return true;
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return false;
+        return true;
     }
 
 }
