@@ -18,7 +18,7 @@ public class AgenciaDaoDB implements AgenciaDao{
     
     @Override
     public boolean add(Agencia agencia) {
-        String sql = "INSERT INTO AGENCIA (NOME) VALUES (?);"
+        String sql = "INSERT INTO AGENCIA (CODIGO,NOME) VALUES (?);"
         	+ "INSERT INTO ENDERECO_AGENCIA (CODAG,RUA,BAIRRO,CIDADE,CEP,NUMERO,UF) VALUES (?,?,?,?,?,?,?);"
                 + "INSERT INTO TELEFONE_AGENCIA (CODAG,TELEFONE) VALUES (?,?)";
         try {

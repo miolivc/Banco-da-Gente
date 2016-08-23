@@ -1,7 +1,7 @@
 package io.github.miolivc.servlets;
 
-import io.github.miolivc.entities.Cliente;
-import io.github.miolivc.manager.ClienteManager;
+import io.github.miolivc.manager.FuncionarioManager;
+import io.github.miolivc.entities.Funcionario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,14 +22,16 @@ public class Login extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        PrintWriter out = response.getWriter();
-//        ClienteManager manager = new ClienteManager();
-//        Cliente cliente = manager.find("000.000.000-00");
-//        if(cliente != null){
-//            if(cliente.getEmail().equals(request.getParameter("user")) && cliente.getSenha().equals(request.getParameter("pass"))){
-//                out.print("<!DOCTYPE hmtl><html lang='pt-br'><body><h1>Login efetudo com sucesso!</h1></body></html>");
-//            }
-//        }
-//        out.print("<!DOCTYPE hmtl><html lang='pt-br'><body><h1>Login não efetudo!</h1></body></html>");
+        PrintWriter out = response.getWriter();
+        FuncionarioManager gerenciadorFuncionario = new FuncionarioManager();
+        Funcionario funcionario = gerenciadorFuncionario.find("000.000.000-22");
+        out.print("<!DOCTYPE hmtl><html><body>"+ funcionario.getEmail() + funcionario.getSenha() );
+        if(funcionario.getEmail() == request.getParameter("email") && funcionario.getSenha() == request.getParameter("senha")){
+            request.getSession(true);
+            out.print("<h1>Logado com sucesso!</h1>" + funcionario.getEmail() + funcionario.getSenha());
+        } else {
+            out.print("<h1>:( um dos parametros esta errado</h1>" + funcionario.getEmail() + funcionario.getSenha());
+        }
+        out.print( funcionario.getEmail() + funcionario.getSenha() + "</body></html>");
     }
 }

@@ -19,45 +19,42 @@ public class ClienteDaoDB implements ClienteDao{
     
     @Override
     public boolean add(Cliente cliente) {
-        String sql = "INSERT INTO CLIENTE (CPF,CNPJ,NOME,RG,DATANASC,EMAIL,SENHA,FOTO) VALUES (?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO CLIENTE(CPF,CNPJ,NOME,RG,DATANASC,EMAIL,SENHA,FOTO) VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1,cliente.getCpf());
+            stmt.setString(1, cliente.getCpf());
             stmt.setString(2, cliente.getCnpj());
             stmt.setString(3, cliente.getNome());
             stmt.setString(4, cliente.getRg());
-            stmt.setDate(5, Date.valueOf(cliente.getDataNasc())); 
+            stmt.setDate(5, Date.valueOf("2008-12-12"));//Date.valueOf(cliente.getDataNasc()));
             stmt.setString(6, cliente.getEmail());
-            stmt.setString(8, cliente.getSenha());
-            stmt.setString(9, cliente.getFoto());
+            stmt.setString(7, cliente.getSenha());
+            stmt.setString(8, cliente.getFoto());
             stmt.executeUpdate();
             stmt.close();
             
-            sql = "INSERT INTO ENDERECO_CLIENTE (CPF,RUA,BAIRRO,CIDADE,CEP,NUMERO,UF) VALUES (?,?,?,?,?,?,?);";
+            sql = "INSERT INTO ENDERECO_CLIENTE(CPF,RUA,BAIRRO,CIDADE,CEP,UF,NUMERO) VALUES (?,?,?,?,?,?,?)";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(10, cliente.getCpf());
-            stmt.setString(11, cliente.getEndereco().getRua());
-            stmt.setString(12, cliente.getEndereco().getBairro());
-            stmt.setString(13, cliente.getEndereco().getCidade());
-            stmt.setString(14, cliente.getEndereco().getCep());
-            stmt.setString(15, cliente.getEndereco().getNumero());
-            stmt.setString(16, cliente.getEndereco().getUf());
+            stmt.setString(1, cliente.getCpf());
+            stmt.setString(2, cliente.getEndereco().getRua());
+            stmt.setString(3, cliente.getEndereco().getBairro());
+            stmt.setString(4, cliente.getEndereco().getCidade());
+            stmt.setString(5, cliente.getEndereco().getCep());
+            stmt.setString(6, cliente.getEndereco().getUf());
+            stmt.setString(7, cliente.getEndereco().getNumero());
             stmt.executeUpdate();
             stmt.close();
             
-            sql = "INSERT INTO TELEFONE_CLIENTE (CPF,TELEFONE) VALUES (?,?)";
+            sql = "INSERT INTO TELEFONE_CLIENTE(CPF,TELEFONE) VALUES (?,?)";
             stmt = conn.prepareStatement(sql);
-            stmt.setString(17, cliente.getCpf());
-            stmt.setString(18, cliente.getTelefone());
-            
+            stmt.setString(1, cliente.getCpf());
+            stmt.setString(2, cliente.getTelefone());
             stmt.executeUpdate();
-            
             stmt.close();
-            conn.close();
-            
         } catch (SQLException ex) {
-            ex.printStackTrace(); 
-        }    
+            ex.printStackTrace();
+            return false;
+        }
         return true;
     }
 
